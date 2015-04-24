@@ -2,6 +2,8 @@ package foo.bar;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.data.solr.repository.config.EnableSolrRepositories;
 
 /**
@@ -12,10 +14,18 @@ import org.springframework.data.solr.repository.config.EnableSolrRepositories;
  */
 @SpringBootApplication
 @EnableSolrRepositories(multicoreSupport = true)
-public class ApplicationConfiguration {
+public class ApplicationConfiguration extends SpringBootServletInitializer {
 
+	/**
+	 * Inicia uma aplicação em um servidor Tomcat embarcado.
+	 */
 	public static void main(String args[]) {
 		SpringApplication.run(ApplicationConfiguration.class, args);
+	}
+
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		return builder.sources(ApplicationConfiguration.class);
 	}
 
 }

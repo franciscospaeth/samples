@@ -30,15 +30,15 @@ public class ProductsController {
 
 	/**
 	 * Curl request:
-	 * curl -XPUT http://localhost:8080/ -d '{
-	 *   "inStock": true,
+	 * curl -XPUT http://localhost:8080/ -H "Content-Type: application/json" -d '{
+	 *   "available": true,
 	 *   "popularity": 1,
 	 *   "id": "5f5fe376-c596-11e4-8c80-f0defa6c59f4",
 	 *   "price": 1250,
 	 *   "price_c": "1250.0,USD",
 	 *   "category": "Periféricos",
 	 *   "name": "Monitor 17\"",
-	 *   "description": "Monitor com caixas de som incluídas, definição UHD.",
+	 *   "description": "Monitor com caixas de som incluídas, definição UHD."
 	 * }'
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.PUT)
@@ -83,7 +83,7 @@ public class ProductsController {
 			@PathVariable("page") int page, //
 			@PathVariable("size") int size //
 	) {
-		return productDao.findByCategoryAndInStockTrue(category, new SolrPageRequest(page, size));
+		return productDao.findByCategoryAndAvailableTrue(category, new SolrPageRequest(page, size));
 	}
 
 	/**
@@ -100,4 +100,3 @@ public class ProductsController {
 	}
 
 }
-

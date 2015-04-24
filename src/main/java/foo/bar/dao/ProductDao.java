@@ -20,7 +20,7 @@ public interface ProductDao extends SolrCrudRepository<Product, String> {
 	@Query("*:*")
 	Page<Product> findAllPaged(Pageable pageRequest);
 
-	Page<Product> findByCategoryAndInStockTrue(String category, Pageable pageRequest);
+	Page<Product> findByCategoryAndAvailableTrue(String category, Pageable pageRequest);
 
 	@Facet(fields = "category", minCount = 1)
 	@Query("title:?0 description:?0")

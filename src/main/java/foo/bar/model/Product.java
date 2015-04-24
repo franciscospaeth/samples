@@ -3,7 +3,6 @@ package foo.bar.model;
 import java.util.UUID;
 
 import org.apache.solr.client.solrj.beans.Field;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.solr.core.mapping.SolrDocument;
 
 /**
@@ -15,13 +14,13 @@ import org.springframework.data.solr.core.mapping.SolrDocument;
 @SolrDocument(solrCoreName = "products")
 public class Product {
 
-	@Id @Field private String id = UUID.randomUUID().toString();
+	@Field private String id = UUID.randomUUID().toString();
 	@Field private String name;
 	@Field private String description;
 	@Field private String category;
 	@Field private float price;
 	@Field private int popularity;
-	@Field private boolean inStock;
+	@Field("inStock") private boolean available;
 
 	public String getId() {
 		return id;
@@ -71,12 +70,12 @@ public class Product {
 		this.popularity = popularity;
 	}
 
-	public boolean isInStock() {
-		return inStock;
+	public boolean isAvailable() {
+		return available;
 	}
 
-	public void setInStock(boolean inStock) {
-		this.inStock = inStock;
+	public void setAvailable(boolean available) {
+		this.available = available;
 	}
 
 }
